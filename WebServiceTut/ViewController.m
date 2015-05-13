@@ -36,7 +36,14 @@
 - (void) checkDeals;
 {
     if (self.deals.refreshedAt < [NSDate dateWithTimeIntervalSinceNow:-600]) {
-        [self fetchDeals];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
+                       ^{
+                           [self fetchDeals];
+                           
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               self.dealCount.text = [NSString stringWithFormat: @"Deals: %i", (int)[self.deals.dealCount integerValue]];
+                           });
+                       });
     }
 }
 
@@ -46,7 +53,6 @@
     
     self.deals = [[AppDeals alloc] init];
     [self checkDeals];
-    self.dealCount.text = [NSString stringWithFormat: @"Deals: %i", (int)[self.deals.dealCount integerValue]];
 }
 
 
