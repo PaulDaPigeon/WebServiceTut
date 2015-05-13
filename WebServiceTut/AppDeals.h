@@ -10,9 +10,9 @@
 
 @interface AppDeals : NSObject
 
-    @property int dealCount;
-    @property NSString *dataUrl;
-    @property NSArray *apps;
-    @property NSDate *refreshedAt;
+@property NSNumber *dealCount;
+@property NSString *dataUrl;
+@property NSArray *apps;
+@property NSDate *refreshedAt;
 
 @end
