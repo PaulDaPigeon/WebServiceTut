@@ -16,9 +16,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *dealCount;
 
 
-- (IBAction)fetchDeals;
-
-- (void) checkDeals;
+- (void)updateDeal;
 
 @end
 
