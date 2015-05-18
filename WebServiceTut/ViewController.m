@@ -30,7 +30,9 @@
     }
     self.deals.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
     self.deals.dataUrl = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
-    NSLog(@"%@", [NSString stringWithFormat:@"%d", (int)[self.deals.dealCount integerValue]]);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'H:m:sZ"];
+    self.deals.refreshedAt = [formatter dateFromString:[[dealDict objectForKey:@"mac_app_deals"] objectForKey: @"refreshed_at"]];
 }
 
 - (void) checkDeals;
