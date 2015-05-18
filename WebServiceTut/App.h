@@ -2,31 +2,42 @@
 //  App.h
 //  WebServiceTut
 //
-//  Created by Hebok Pal on 5/5/15.
+//  Created by Hebok Pal on 5/18/15.
 //  Copyright (c) 2015 Bitfall. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface App : NSObject
+@class AppDeal, Screenshot;
 
-    @property int id;
-    @property NSString *title;
-    @property NSString *downloadUrl;
-    @property NSString *appstreamUrl;
-    @property NSString *icon;
-    @property NSString *iconLarge;
-    @property float avarageUserRatingForCurrentVersion;
-    @property int userRatingForCurrentVersion;
-    @property float avarageUserRatingForAllVersion;
-    @property int userRatingForAllVersion;
-    @property int primaryCategoryId;
-    @property NSString *primaryCategoryTitle;
-    @property float currentPrice;
-    @property float previousPrice;
-    @property NSDate *currentPriceDate;
-    @property NSString *currencyCode;
-    @property NSArray *screenshots;
-    @property float appDealScore;
+@interface App : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * appDealScore;
+@property (nonatomic, retain) NSString * appstreamURL;
+@property (nonatomic, retain) NSNumber * avarageUserRatingForAllVersion;
+@property (nonatomic, retain) NSNumber * avarageUserRatingForCurrentVersion;
+@property (nonatomic, retain) NSString * currencyCode;
+@property (nonatomic, retain) NSNumber * currentPrice;
+@property (nonatomic, retain) NSDate * currentPriceDate;
+@property (nonatomic, retain) NSString * downloadURL;
+@property (nonatomic, retain) NSString * icon;
+@property (nonatomic, retain) NSString * iconLarge;
+@property (nonatomic, retain) NSNumber * id;
+@property (nonatomic, retain) NSNumber * primaryCategoryId;
+@property (nonatomic, retain) NSString * primaryCategoryTitle;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * userRatingForAllVersion;
+@property (nonatomic, retain) NSNumber * userRatingForCurrentVersion;
+@property (nonatomic, retain) AppDeal *appDeal;
+@property (nonatomic, retain) NSSet *screenshots;
+@end
+
+@interface App (CoreDataGeneratedAccessors)
+
+- (void)addScreenshotsObject:(Screenshot *)value;
+- (void)removeScreenshotsObject:(Screenshot *)value;
+- (void)addScreenshots:(NSSet *)values;
+- (void)removeScreenshots:(NSSet *)values;
 
 @end

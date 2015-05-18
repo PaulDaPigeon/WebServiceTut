@@ -15,8 +15,9 @@
 		62EE867A1AF8E85A00E1EF39 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62EE86791AF8E85A00E1EF39 /* Images.xcassets */; };
 		62EE867D1AF8E85A00E1EF39 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EE867B1AF8E85A00E1EF39 /* LaunchScreen.xib */; };
 		62EE86891AF8E85A00E1EF39 /* WebServiceTutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE86881AF8E85A00E1EF39 /* WebServiceTutTests.m */; };
-		62EE86941AF9183000E1EF39 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE86931AF9183000E1EF39 /* App.m */; };
-		62EE86971AFA02A800E1EF39 /* AppDeals.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE86961AFA02A800E1EF39 /* AppDeals.m */; };
+		62F1DC4B1B0A2911002072B9 /* AppDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F1DC4A1B0A2911002072B9 /* AppDeal.m */; };
+		62F1DC4E1B0A2912002072B9 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F1DC4D1B0A2912002072B9 /* App.m */; };
+		62F1DC511B0A2912002072B9 /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F1DC501B0A2912002072B9 /* Screenshot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +45,12 @@
 		62EE86821AF8E85A00E1EF39 /* WebServiceTutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebServiceTutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62EE86871AF8E85A00E1EF39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62EE86881AF8E85A00E1EF39 /* WebServiceTutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebServiceTutTests.m; sourceTree = "<group>"; };
-		62EE86921AF9183000E1EF39 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
-		62EE86931AF9183000E1EF39 /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
-		62EE86951AFA02A800E1EF39 /* AppDeals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDeals.h; sourceTree = "<group>"; };
-		62EE86961AFA02A800E1EF39 /* AppDeals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDeals.m; sourceTree = "<group>"; };
+		62F1DC491B0A2911002072B9 /* AppDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDeal.h; path = WebServiceTut/AppDeal.h; sourceTree = "<group>"; };
+		62F1DC4A1B0A2911002072B9 /* AppDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDeal.m; path = WebServiceTut/AppDeal.m; sourceTree = "<group>"; };
+		62F1DC4C1B0A2912002072B9 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = App.h; path = WebServiceTut/App.h; sourceTree = "<group>"; };
+		62F1DC4D1B0A2912002072B9 /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = App.m; path = WebServiceTut/App.m; sourceTree = "<group>"; };
+		62F1DC4F1B0A2912002072B9 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screenshot.h; path = WebServiceTut/Screenshot.h; sourceTree = "<group>"; };
+		62F1DC501B0A2912002072B9 /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Screenshot.m; path = WebServiceTut/Screenshot.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,12 @@
 		62EE865D1AF8E85900E1EF39 = {
 			isa = PBXGroup;
 			children = (
+				62F1DC4F1B0A2912002072B9 /* Screenshot.h */,
+				62F1DC501B0A2912002072B9 /* Screenshot.m */,
+				62F1DC4C1B0A2912002072B9 /* App.h */,
+				62F1DC4D1B0A2912002072B9 /* App.m */,
+				62F1DC491B0A2911002072B9 /* AppDeal.h */,
+				62F1DC4A1B0A2911002072B9 /* AppDeal.m */,
 				62EE86681AF8E85A00E1EF39 /* WebServiceTut */,
 				62EE86851AF8E85A00E1EF39 /* WebServiceTutTests */,
 				62EE86671AF8E85A00E1EF39 /* Products */,
@@ -91,10 +100,6 @@
 			children = (
 				62EE866D1AF8E85A00E1EF39 /* AppDelegate.h */,
 				62EE866E1AF8E85A00E1EF39 /* AppDelegate.m */,
-				62EE86921AF9183000E1EF39 /* App.h */,
-				62EE86931AF9183000E1EF39 /* App.m */,
-				62EE86951AFA02A800E1EF39 /* AppDeals.h */,
-				62EE86961AFA02A800E1EF39 /* AppDeals.m */,
 				62EE86731AF8E85A00E1EF39 /* ViewController.h */,
 				62EE86741AF8E85A00E1EF39 /* ViewController.m */,
 				62EE86761AF8E85A00E1EF39 /* Main.storyboard */,
@@ -232,10 +237,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62EE86941AF9183000E1EF39 /* App.m in Sources */,
+				62F1DC511B0A2912002072B9 /* Screenshot.m in Sources */,
 				62EE866F1AF8E85A00E1EF39 /* AppDelegate.m in Sources */,
 				62EE86721AF8E85A00E1EF39 /* WebServiceTut.xcdatamodeld in Sources */,
-				62EE86971AFA02A800E1EF39 /* AppDeals.m in Sources */,
+				62F1DC4B1B0A2911002072B9 /* AppDeal.m in Sources */,
+				62F1DC4E1B0A2912002072B9 /* App.m in Sources */,
 				62EE86751AF8E85A00E1EF39 /* ViewController.m in Sources */,
 				62EE866C1AF8E85A00E1EF39 /* main.m in Sources */,
 			);
@@ -432,6 +438,7 @@
 				62EE868E1AF8E85A00E1EF39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62EE868F1AF8E85A00E1EF39 /* Build configuration list for PBXNativeTarget "WebServiceTutTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +447,7 @@
 				62EE86911AF8E85A00E1EF39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AppDeals.h"
+#import <CoreData/CoreData.h>
+#import "AppDeal.h"
 
 
 @interface ViewController : UIViewController

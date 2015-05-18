@@ -10,7 +10,7 @@
 @interface ViewController () {
     NSDictionary *dealDict;
 }
-@property (nonatomic, strong) AppDeals *deals;
+@property (nonatomic, strong) AppDeal *deals;
 @end
 
 @implementation ViewController
@@ -29,7 +29,7 @@
         dealDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     }
     self.deals.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
-    self.deals.dataUrl = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
+    self.deals.dataURL = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'H:m:sZ"];
     self.deals.refreshedAt = [formatter dateFromString:[[dealDict objectForKey:@"mac_app_deals"] objectForKey: @"refreshed_at"]];
@@ -53,7 +53,7 @@
 {
     [super viewDidLoad];
     
-    self.deals = [[AppDeals alloc] init];
+    self.deals = [[AppDeal alloc] init];
     [self checkDeals];
 }
 
