@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		62EE498B1B0B945B009C9910 /* AppDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE498A1B0B945B009C9910 /* AppDeal.m */; };
 		62EE498E1B0B945C009C9910 /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE498D1B0B945C009C9910 /* Screenshot.m */; };
-		62EE49911B0B945C009C9910 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE49901B0B945C009C9910 /* App.m */; };
+		62EE49971B0BA191009C9910 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE49961B0BA191009C9910 /* App.m */; };
 		62EE866C1AF8E85A00E1EF39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE866B1AF8E85A00E1EF39 /* main.m */; };
 		62EE866F1AF8E85A00E1EF39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE866E1AF8E85A00E1EF39 /* AppDelegate.m */; };
 		62EE86721AF8E85A00E1EF39 /* WebServiceTut.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62EE86701AF8E85A00E1EF39 /* WebServiceTut.xcdatamodeld */; };
@@ -35,8 +35,8 @@
 		62EE498A1B0B945B009C9910 /* AppDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDeal.m; sourceTree = "<group>"; };
 		62EE498C1B0B945C009C9910 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
 		62EE498D1B0B945C009C9910 /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshot.m; sourceTree = "<group>"; };
-		62EE498F1B0B945C009C9910 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
-		62EE49901B0B945C009C9910 /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
+		62EE49951B0BA191009C9910 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
+		62EE49961B0BA191009C9910 /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
 		62EE86661AF8E85A00E1EF39 /* WebServiceTut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebServiceTut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62EE866A1AF8E85A00E1EF39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62EE866B1AF8E85A00E1EF39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -74,8 +74,8 @@
 		62EE865D1AF8E85900E1EF39 = {
 			isa = PBXGroup;
 			children = (
-				62EE498F1B0B945C009C9910 /* App.h */,
-				62EE49901B0B945C009C9910 /* App.m */,
+				62EE49951B0BA191009C9910 /* App.h */,
+				62EE49961B0BA191009C9910 /* App.m */,
 				62EE498C1B0B945C009C9910 /* Screenshot.h */,
 				62EE498D1B0B945C009C9910 /* Screenshot.m */,
 				62EE49891B0B945B009C9910 /* AppDeal.h */,
@@ -239,7 +239,7 @@
 			files = (
 				62EE866F1AF8E85A00E1EF39 /* AppDelegate.m in Sources */,
 				62EE86721AF8E85A00E1EF39 /* WebServiceTut.xcdatamodeld in Sources */,
-				62EE49911B0B945C009C9910 /* App.m in Sources */,
+				62EE49971B0BA191009C9910 /* App.m in Sources */,
 				62EE498B1B0B945B009C9910 /* AppDeal.m in Sources */,
 				62EE498E1B0B945C009C9910 /* Screenshot.m in Sources */,
 				62EE86751AF8E85A00E1EF39 /* ViewController.m in Sources */,

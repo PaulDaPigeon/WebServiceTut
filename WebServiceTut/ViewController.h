@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "AppDeal.h"
+#import "App.h"
+#import "Screenshot.h"
 
 
 @interface ViewController : UIViewController

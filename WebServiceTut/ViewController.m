@@ -52,6 +52,68 @@
             self.dealDataBase.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
             self.dealDataBase.dataURL = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
             self.dealDataBase.refreshedAt =refreshedAt;
+            
+            url = [NSURL URLWithString:self.dealDataBase.dataURL];
+            request = [NSURLRequest requestWithURL:url];
+            data = [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response
+                                                     error:&error];
+            if (error == nil)
+            {
+                dealDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            }
+            else
+            {
+                NSLog(@"Could not update app information with error: %@", error);
+            }
+            
+            NSArray *appArray = [dealDict objectForKey:@"apps"];
+            for (id appObject in appArray)
+            {
+                App *app = [[App alloc] initWithEntity:[NSEntityDescription entityForName:@"App" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
+                
+                app.iD = [appObject objectForKey:@"id"];
+                app.title = [appObject objectForKey:@"title"];
+                app.downloadURL = [appObject objectForKey:@"download_url"];
+                app.appstreamURL = [appObject objectForKey:@"appstream_url"];
+                app.icon = [appObject objectForKey:@"icon"];
+                app.iconLarge = [appObject objectForKey:@"icon_large"];
+                app.primaryCategoryID = [appObject objectForKey:@"primary_category_id"];
+                app.primaryCategoryTitle = [appObject objectForKey:@"primary_category_title"];
+                app.currentPrice = [NSNumber numberWithFloat:[[appObject objectForKey:@"current_price"]floatValue]];
+                app.previousPrice = [NSNumber numberWithFloat:[[appObject objectForKey:@"previous_price"] floatValue]];
+                app.currentPriceDate = [formatter dateFromString:[appObject objectForKey:@"current_price_date"] ];
+                app.currencyCode = [appObject objectForKey:@"currency_code"];
+                app.appDealScore = [NSNumber numberWithFloat:[[appObject objectForKey:@"app_deal_score"] floatValue]];
+               
+                if ([appObject objectForKey:@"average_user_rating_for_current_version"] != [NSNull null])
+                {
+                    app.avarageUserRatingForCurrentVersion = [NSNumber numberWithFloat:[[appObject objectForKey:@"average_user_rating_for_current_version"] floatValue]];
+                }
+                if ([appObject objectForKey:@"user_rating_count_for_current_version"] != [NSNull null])
+                {
+                    app.userRatingCountForCurrentVersion = [appObject objectForKey:@"user_rating_count_for_current_version"];
+                }
+                if ([appObject objectForKey:@"average_user_rating_for_all_version"] != [NSNull null])
+                {
+                    app.avarageUserRatingForAllVersion = [NSNumber numberWithFloat:[[appObject objectForKey:@"average_user_rating_for_all_version"] floatValue]];
+                }
+                if ([appObject objectForKey:@"user_rating_count_for_all_version"] != [NSNull null])
+                {
+                    app.userRatingCountForAllVersion = [appObject objectForKey:@"user_rating_count_for_all_version"];
+                }
+                
+                NSArray *screenshotArray = [appObject objectForKey:@"screenshots"];
+                for (NSString *screenshotString in screenshotArray)
+                {
+                    Screenshot *screenshot = [[Screenshot alloc] initWithEntity:[NSEntityDescription entityForName:@"Screenshot" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
+                    screenshot.screenshotURL = screenshotString;
+                    [app addScreenshotsObject:screenshot];
+                }
+                
+                [self.dealDataBase addAppsObject:app];
+            }
+            
             [self saveAppDeal];
         }
         else
