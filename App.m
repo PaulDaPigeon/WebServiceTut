@@ -2,7 +2,7 @@
 //  App.m
 //  WebServiceTut
 //
-//  Created by Hebok Pal on 5/18/15.
+//  Created by Hebok Pal on 5/19/15.
 //  Copyright (c) 2015 Bitfall. All rights reserved.
 //
 
@@ -23,8 +23,8 @@
 @dynamic downloadURL;
 @dynamic icon;
 @dynamic iconLarge;
-@dynamic id;
-@dynamic primaryCategoryId;
+@dynamic iD;
+@dynamic primaryCategoryID;
 @dynamic primaryCategoryTitle;
 @dynamic title;
 @dynamic userRatingForAllVersion;

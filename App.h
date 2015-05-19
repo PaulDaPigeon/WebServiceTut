@@ -2,7 +2,7 @@
 //  App.h
 //  WebServiceTut
 //
-//  Created by Hebok Pal on 5/18/15.
+//  Created by Hebok Pal on 5/19/15.
 //  Copyright (c) 2015 Bitfall. All rights reserved.
 //
 
@@ -23,8 +23,8 @@
 @property (nonatomic, retain) NSString * downloadURL;
 @property (nonatomic, retain) NSString * icon;
 @property (nonatomic, retain) NSString * iconLarge;
-@property (nonatomic, retain) NSNumber * id;
-@property (nonatomic, retain) NSNumber * primaryCategoryId;
+@property (nonatomic, retain) NSNumber * iD;
+@property (nonatomic, retain) NSNumber * primaryCategoryID;
 @property (nonatomic, retain) NSString * primaryCategoryTitle;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * userRatingForAllVersion;
