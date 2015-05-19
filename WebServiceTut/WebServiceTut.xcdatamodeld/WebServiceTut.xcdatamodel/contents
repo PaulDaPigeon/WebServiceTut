@@ -6,17 +6,18 @@
         <attribute name="avarageUserRatingForAllVersion" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="avarageUserRatingForCurrentVersion" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="currencyCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="currentPrice" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="currentPrice" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="currentPriceDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="downloadURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iconLarge" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iD" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="previousPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="primaryCategoryID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="primaryCategoryTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userRatingForAllVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="userRatingForCurrentVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userRatingCountForAllVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userRatingCountForCurrentVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="appDeal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppDeal" inverseName="apps" inverseEntity="AppDeal" syncable="YES"/>
         <relationship name="screenshots" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Screenshot" inverseName="app" inverseEntity="Screenshot" syncable="YES"/>
     </entity>
@@ -31,7 +32,7 @@
         <relationship name="app" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="App" inverseName="screenshots" inverseEntity="App" syncable="YES"/>
     </entity>
     <elements>
-        <element name="App" positionX="97" positionY="36" width="128" height="313"/>
+        <element name="App" positionX="97" positionY="36" width="128" height="328"/>
         <element name="AppDeal" positionX="-180" positionY="72" width="128" height="103"/>
         <element name="Screenshot" positionX="-200" positionY="387" width="128" height="73"/>
     </elements>

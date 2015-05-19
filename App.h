@@ -27,8 +27,9 @@
 @property (nonatomic, retain) NSNumber * primaryCategoryID;
 @property (nonatomic, retain) NSString * primaryCategoryTitle;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSNumber * userRatingForAllVersion;
-@property (nonatomic, retain) NSNumber * userRatingForCurrentVersion;
+@property (nonatomic, retain) NSNumber * userRatingCountForAllVersion;
+@property (nonatomic, retain) NSNumber * userRatingCountForCurrentVersion;
+@property (nonatomic, retain) NSNumber * previousPrice;
 @property (nonatomic, retain) AppDeal *appDeal;
 @property (nonatomic, retain) NSSet *screenshots;
 @end

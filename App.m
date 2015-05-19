@@ -27,8 +27,9 @@
 @dynamic primaryCategoryID;
 @dynamic primaryCategoryTitle;
 @dynamic title;
-@dynamic userRatingForAllVersion;
-@dynamic userRatingForCurrentVersion;
+@dynamic userRatingCountForAllVersion;
+@dynamic userRatingCountForCurrentVersion;
+@dynamic previousPrice;
 @dynamic appDeal;
 @dynamic screenshots;
 
