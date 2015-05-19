@@ -18,38 +18,50 @@
 
 - (void)updateDeal;
 {
-    NSDictionary *dealDict;
-    NSURL *url = [NSURL URLWithString:@"http://www.goappstream.com/api/v1/app_deals.json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSURLResponse *response;
-    NSError *error;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response
-                                                     error:&error];
-    if (error == nil)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
     {
-        dealDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    }
-    else
-    {
-        NSLog(@"Could not update deal information with error: %@", error);
-    }
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'H:m:sZ"];
-    NSDate *refreshedAt = [formatter dateFromString:[[dealDict objectForKey:@"mac_app_deals"] objectForKey: @"refreshed_at"]];
-    if (self.dealDataBase == nil || [self.dealDataBase.refreshedAt compare: refreshedAt] != NSOrderedSame)
-    {
-        self.dealDataBase.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
-        self.dealDataBase.dataURL = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
-        self.dealDataBase.refreshedAt =refreshedAt;
-        [self saveAppDeal];
-    }
-    else
-    {
-        NSLog(@"The deal database is up to date");
-    }
+        NSDictionary *dealDict;
+        NSURL *url = [NSURL URLWithString:@"http://www.goappstream.com/api/v1/app_deals.json"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        
+        NSURLResponse *response;
+        NSError *error;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                             returningResponse:&response
+                                                         error:&error];
+        if (error == nil)
+        {
+            dealDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        }
+        else
+        {
+            NSLog(@"Could not update deal information with error: %@", error);
+        }
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd'T'H:m:sZ"];
+        NSDate *refreshedAt = [formatter dateFromString:[[dealDict objectForKey:@"mac_app_deals"] objectForKey: @"refreshed_at"]];
+        if (self.dealDataBase == nil || [self.dealDataBase.refreshedAt compare: refreshedAt] != NSOrderedSame)
+        {
+            self.dealDataBase.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
+            self.dealDataBase.dataURL = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
+            self.dealDataBase.refreshedAt =refreshedAt;
+            [self saveAppDeal];
+        }
+        else
+        {
+            NSLog(@"The deal database is up to date");
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+                [self updateUI];
+        });
+    });
+}
+
+- (void) updateUI
+{
     self.dealCount.text = [NSString stringWithFormat: @"Deals: %i", (int)[self.dealDataBase.dealCount integerValue]];
 }
 

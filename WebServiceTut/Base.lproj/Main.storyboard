@@ -16,10 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deals: 000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-k1-rIU">
-                                <rect key="frame" x="243" y="267" width="114" height="65"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updating deals..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-k1-rIU">
+                                <rect key="frame" x="223" y="267" width="154" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="TQO-As-NFW"/>
+                                    <constraint firstAttribute="width" constant="154" id="uDo-fQ-26A"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -28,9 +28,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cOz-k1-rIU" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="247" id="Bmn-Fa-8Pg"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="cOz-k1-rIU" secondAttribute="bottom" constant="268" id="anG-Qx-3OJ"/>
-                            <constraint firstItem="cOz-k1-rIU" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="uV4-9d-3yY"/>
+                            <constraint firstItem="cOz-k1-rIU" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="247" id="602-b7-MaZ"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="cOz-k1-rIU" secondAttribute="bottom" constant="268" id="jrb-I2-AkD"/>
+                            <constraint firstItem="cOz-k1-rIU" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="z2S-AB-2KV"/>
                         </constraints>
                     </view>
                     <connections>
