@@ -43,6 +43,12 @@
         NSDate *refreshedAt = [formatter dateFromString:[[dealDict objectForKey:@"mac_app_deals"] objectForKey: @"refreshed_at"]];
         if (self.dealDataBase == nil || [self.dealDataBase.refreshedAt compare: refreshedAt] != NSOrderedSame)
         {
+            if (self.dealDataBase != nil)
+            {
+                [context deleteObject:self.dealDataBase];
+            }
+            self.dealDataBase = [[AppDeal alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
+            
             self.dealDataBase.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
             self.dealDataBase.dataURL = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
             self.dealDataBase.refreshedAt =refreshedAt;
@@ -94,8 +100,6 @@
         if (fetchedObjects.count == 0)
         {
             NSLog(@"No object matched the description");
-            //No database exists on phone, insert one on the phone
-            self.dealDataBase = [[AppDeal alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
         }
         else
         {
