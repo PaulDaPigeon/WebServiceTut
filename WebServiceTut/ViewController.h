@@ -13,7 +13,7 @@
 #import "Screenshot.h"
 
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UILabel *dealCount;
 

@@ -10,11 +10,31 @@
 @interface ViewController () {
     NSManagedObjectContext *context;
     NSEntityDescription *entityDescription;
+    AppDeal *dealDataBase;
+    NSArray *apps;
 }
-@property (nonatomic, strong) AppDeal *dealDataBase;
 @end
 
 @implementation ViewController
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [apps count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    
+    cell.textLabel.text = [[apps objectAtIndex:indexPath.row] title];
+    
+    return cell;
+}
 
 - (void)updateDeal;
 {
@@ -41,19 +61,19 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd'T'H:m:sZ"];
         NSDate *refreshedAt = [formatter dateFromString:[[dealDict objectForKey:@"mac_app_deals"] objectForKey: @"refreshed_at"]];
-        if (self.dealDataBase == nil || [self.dealDataBase.refreshedAt compare: refreshedAt] != NSOrderedSame)
+        if (dealDataBase == nil || [dealDataBase.refreshedAt compare: refreshedAt] != NSOrderedSame)
         {
-            if (self.dealDataBase != nil)
+            if (dealDataBase != nil)
             {
-                [context deleteObject:self.dealDataBase];
+                [context deleteObject:dealDataBase];
             }
-            self.dealDataBase = [[AppDeal alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
+            dealDataBase = [[AppDeal alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
             
-            self.dealDataBase.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
-            self.dealDataBase.dataURL = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
-            self.dealDataBase.refreshedAt =refreshedAt;
+            dealDataBase.dealCount = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"deal_count"];
+            dealDataBase.dataURL = [[dealDict objectForKey:@"mac_app_deals"] objectForKey:@"data_url"];
+            dealDataBase.refreshedAt =refreshedAt;
             
-            url = [NSURL URLWithString:self.dealDataBase.dataURL];
+            url = [NSURL URLWithString:dealDataBase.dataURL];
             request = [NSURLRequest requestWithURL:url];
             data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
@@ -108,10 +128,13 @@
                 {
                     Screenshot *screenshot = [[Screenshot alloc] initWithEntity:[NSEntityDescription entityForName:@"Screenshot" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
                     screenshot.screenshotURL = screenshotString;
+                    
+                    //screenshot.app = app;
                     [app addScreenshotsObject:screenshot];
                 }
                 
-                [self.dealDataBase addAppsObject:app];
+                //app.appDeal = dealDataBase;
+                [dealDataBase addAppsObject:app];
             }
             
             [self saveAppDeal];
@@ -130,7 +153,7 @@
 
 - (void) updateUI
 {
-    self.dealCount.text = [NSString stringWithFormat: @"Deals: %i", (int)[self.dealDataBase.dealCount integerValue]];
+    self.dealCount.text = [NSString stringWithFormat: @"Deals: %i", (int)[dealDataBase.dealCount integerValue]];
 }
 
 - (void)saveAppDeal
@@ -167,7 +190,7 @@
         {
             for (NSManagedObject *object in fetchedObjects)
             {
-                self.dealDataBase = (AppDeal *) object;
+                dealDataBase = (AppDeal *) object;
             }
         }
     }
@@ -180,6 +203,7 @@
     context = [(AppDeal *) [[UIApplication sharedApplication] delegate] managedObjectContext];
     entityDescription = [NSEntityDescription entityForName:@"AppDeal" inManagedObjectContext:context];
     [self fetchDeal];
+    apps = [dealDataBase.apps allObjects];
     
     [self updateDeal];
     

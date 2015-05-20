@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4R1-70-vZ1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
@@ -16,29 +16,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updating deals..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-k1-rIU">
-                                <rect key="frame" x="223" y="267" width="154" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="154" id="uDo-fQ-26A"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="k0l-bb-5AQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="GVz-7c-Pwo"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cOz-k1-rIU" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="247" id="602-b7-MaZ"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="cOz-k1-rIU" secondAttribute="bottom" constant="268" id="jrb-I2-AkD"/>
-                            <constraint firstItem="cOz-k1-rIU" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="z2S-AB-2KV"/>
+                            <constraint firstItem="k0l-bb-5AQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="StQ-bN-Uwd"/>
+                            <constraint firstItem="k0l-bb-5AQ" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="TID-2Z-NBn"/>
+                            <constraint firstItem="k0l-bb-5AQ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="m6r-k1-bqS"/>
+                            <constraint firstAttribute="trailing" secondItem="k0l-bb-5AQ" secondAttribute="trailing" id="y2c-Ar-zrF"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="dealCount" destination="cOz-k1-rIU" id="oA4-Nr-fv1"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="44d-Le-IRr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1154" y="-388"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ega-J5-Vrg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4R1-70-vZ1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jsp-hL-G1K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="kMx-Km-pIB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MeN-7y-WPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="-388"/>
         </scene>
     </scenes>
 </document>
