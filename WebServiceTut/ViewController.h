@@ -7,18 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
-#import "AppDeal.h"
-#import "App.h"
-#import "Screenshot.h"
 
 
 @interface ViewController : UIViewController <UITableViewDataSource>
 
-@property (nonatomic, strong) IBOutlet UILabel *dealCount;
+@property (nonatomic, strong) IBOutlet UILabel *dealCountLabel;
+@property (nonatomic, strong) IBOutlet UILabel *refreshedAtLabel;
+@property (nonatomic, strong) NSArray *apps;
 
-
-- (void)updateDeal;
+-(IBAction) refresh;
 
 @end
 
