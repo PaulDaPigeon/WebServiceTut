@@ -2,7 +2,7 @@
 //  Screenshot.h
 //  WebServiceTut
 //
-//  Created by Hebok Pal on 5/26/15.
+//  Created by Hebok Pal on 5/19/15.
 //  Copyright (c) 2015 Bitfall. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 
 @interface Screenshot : NSManagedObject
 
-@property (nonatomic, retain) NSData * screenshotData;
+@property (nonatomic, retain) NSString * screenshotURL;
 @property (nonatomic, retain) App *app;
 
 @end
