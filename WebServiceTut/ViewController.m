@@ -62,6 +62,47 @@
     
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
     self.apps =[self.apps sortedArrayUsingDescriptors:@[sort]];
+    
+    self.dealCountLabel.text = [NSString stringWithFormat:@"Deals: %li", (long)self.dealCount.integerValue];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendarUnit unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay;
+    NSDateComponents *breakdownInfo = [calendar components:unitFlags fromDate:self.refreshedAt  toDate:[NSDate date]  options:0];
+    
+    switch ([breakdownInfo day]) {
+        case 0:
+            switch ([breakdownInfo hour]) {
+                case 0:
+                    switch ([breakdownInfo minute]) {
+                        case 0:
+                            self.refreshedAtLabel.text = @"Last update: just now";
+                            break;
+                            
+                        case 1:
+                            self.refreshedAtLabel.text = @"Last update: 1 minute ago";
+                            break;
+                        default:
+                            self.refreshedAtLabel.text = [NSString stringWithFormat:@"Last update: %li minutes ago", [breakdownInfo minute]];
+                            break;
+                    }
+                    break;
+                case 1:
+                    self.refreshedAtLabel.text = @"Last update: 1 hour ago";
+                    break;
+                default:
+                    self.refreshedAtLabel.text = [NSString stringWithFormat:@"Last update: %li hours ago", [breakdownInfo hour]];
+                    break;
+            }
+            break;
+        case 1:
+            self.refreshedAtLabel.text = @"Last update: yesterday";
+            break;
+            
+        default:
+            self.refreshedAtLabel.text = [NSString stringWithFormat:@"Last update: %li days ago", [breakdownInfo day]];
+            break;
+    }
+    self.refreshedAtLabel.text = [NSString stringWithFormat:@"Last update %li ago", [breakdownInfo day]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

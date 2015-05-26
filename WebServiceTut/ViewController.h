@@ -14,6 +14,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *dealCountLabel;
 @property (nonatomic, strong) IBOutlet UILabel *refreshedAtLabel;
 @property (nonatomic, strong) NSArray *apps;
+@property (nonatomic, strong) NSNumber *dealCount;
+@property (nonatomic, strong) NSDate *refreshedAt;
 
 -(IBAction) refresh;
 

@@ -214,6 +214,8 @@
     {
         ViewController *viewController = segue.destinationViewController;
         viewController.apps = [dealDataBase.apps allObjects];
+        viewController.refreshedAt = dealDataBase.refreshedAt;
+        viewController.dealCount = dealDataBase.dealCount;
     }
 }
 
