@@ -163,6 +163,33 @@
     
 }
 
+- (void) downloadAndDisplayIcon
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
+                   {
+                       NSURL *url = [NSURL URLWithString:self.app.iconLargeURL];
+                       NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                       
+                       NSURLResponse *response;
+                       NSError *error;
+                       NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                                            returningResponse:&response
+                                                                        error:&error];
+                       
+                       if (!error)
+                       {
+                           dispatch_async(dispatch_get_main_queue(), ^
+                                          {
+                                              self.appIcon.image = [UIImage imageWithData:data];
+                                          });
+                       }
+                       else
+                       {
+                           NSLog(@"Could not download icon with error: %@", error);
+                       }
+                   });
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -170,12 +197,12 @@
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationController.navigationBar.topItem.title = self.app.title;
     
-    self.appIcon.image = [UIImage imageWithData:self.app.iconLarge];
     self.titleLabel.text = self.app.title;
     self.categoryLabel.text = self.app.primaryCategoryTitle;
     self.currentPriceLabel.text = [NSString stringWithFormat:@"%@", self.app.currentPrice];
     self.previousPriceLabel.text = [NSString stringWithFormat:@"%@", self.app.previousPrice];
     
+    [self downloadAndDisplayIcon];
     [self updateCurrentVersionRatingLabel];
     [self updateAllVersionRatingLabel];
     [self updatePriceAgeLabel];

@@ -31,7 +31,28 @@
     
     cell.titleLabel.text = [(App*) [self.apps objectAtIndex:indexPath.row] title];
     [cell.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    cell.appIcon.image = [UIImage imageWithData:[(App*) [self.apps objectAtIndex:indexPath.row] icon]];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
+                   {
+                       NSURL *url = [NSURL URLWithString:[(App*) [self.apps objectAtIndex:indexPath.row] iconURL]];
+                       NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                       
+                       NSURLResponse *response;
+                       NSError *error;
+                       NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                                            returningResponse:&response
+                                                                        error:&error];
+                       if (!error)
+                       {
+                           dispatch_async(dispatch_get_main_queue(), ^
+                                          {
+                                              cell.appIcon.image = [UIImage imageWithData:data];
+                                          });
+                       }
+                       else
+                       {
+                           NSLog(@"Could not download icon with error: %@", error);
+                       }
+                   });
     
     return cell;
 }

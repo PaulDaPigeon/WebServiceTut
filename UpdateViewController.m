@@ -101,6 +101,8 @@
                                app.currentPriceDate = [formatter dateFromString:[appObject objectForKey:@"current_price_date"] ];
                                app.currencyCode = [appObject objectForKey:@"currency_code"];
                                app.appDealScore = [NSNumber numberWithFloat:[[appObject objectForKey:@"app_deal_score"] floatValue]];
+                               app.iconURL = [appObject objectForKey:@"icon"];
+                               app.iconLargeURL = [appObject objectForKey:@"icon_large"];
                                
                                if ([appObject objectForKey:@"average_user_rating_for_current_version"] != [NSNull null])
                                {
@@ -118,21 +120,6 @@
                                {
                                    app.userRatingCountForAllVersion = [appObject objectForKey:@"user_rating_count_for_all_version"];
                                }
-                               
-                               url = [NSURL URLWithString:[appObject objectForKey:@"icon"]];
-                               request = [NSURLRequest requestWithURL:url];
-                               request = [NSURLRequest requestWithURL:url];
-                               data = [NSURLConnection sendSynchronousRequest:request
-                                                            returningResponse:&response
-                                                                        error:&error];
-                               
-                               app.icon = data;
-                               url = [NSURL URLWithString:[appObject objectForKey:@"icon_large"]];
-                               request = [NSURLRequest requestWithURL:url];
-                               data = [NSURLConnection sendSynchronousRequest:request
-                                                            returningResponse:&response
-                                                                        error:&error];
-                               app.iconLarge = data;
                                
                                NSArray *screenshotArray = [appObject objectForKey:@"screenshots"];
                                for (NSString *screenshotString in screenshotArray)
