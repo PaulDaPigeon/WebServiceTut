@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62270CF01B15F1B5001A06DD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62270CEF1B15F1B5001A06DD /* DetailViewController.m */; };
+		62270CF31B15F4F1001A06DD /* AppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62270CF21B15F4F1001A06DD /* AppCell.m */; };
+		62270CF61B1C6C2D001A06DD /* ScreenshotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62270CF51B1C6C2D001A06DD /* ScreenshotCell.m */; };
 		624C12FF1B14BEED0003BABC /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 624C12FE1B14BEED0003BABC /* App.m */; };
 		624C13021B14BEEE0003BABC /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 624C13011B14BEEE0003BABC /* Screenshot.m */; };
 		629193931B14C17600140E03 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 629193921B14C17600140E03 /* UpdateViewController.m */; };
@@ -32,6 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62270CEE1B15F1B5001A06DD /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		62270CEF1B15F1B5001A06DD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		62270CF11B15F4F1001A06DD /* AppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCell.h; sourceTree = "<group>"; };
+		62270CF21B15F4F1001A06DD /* AppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCell.m; sourceTree = "<group>"; };
+		62270CF41B1C6C2D001A06DD /* ScreenshotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenshotCell.h; sourceTree = "<group>"; };
+		62270CF51B1C6C2D001A06DD /* ScreenshotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenshotCell.m; sourceTree = "<group>"; };
 		624C12FD1B14BEED0003BABC /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		624C12FE1B14BEED0003BABC /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
 		624C13001B14BEEE0003BABC /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
@@ -105,9 +114,15 @@
 				62EE866E1AF8E85A00E1EF39 /* AppDelegate.m */,
 				62EE86731AF8E85A00E1EF39 /* ViewController.h */,
 				62EE86741AF8E85A00E1EF39 /* ViewController.m */,
+				62270CEE1B15F1B5001A06DD /* DetailViewController.h */,
+				62270CEF1B15F1B5001A06DD /* DetailViewController.m */,
 				629193911B14C17600140E03 /* UpdateViewController.h */,
 				629193921B14C17600140E03 /* UpdateViewController.m */,
 				62EE86761AF8E85A00E1EF39 /* Main.storyboard */,
+				62270CF11B15F4F1001A06DD /* AppCell.h */,
+				62270CF21B15F4F1001A06DD /* AppCell.m */,
+				62270CF41B1C6C2D001A06DD /* ScreenshotCell.h */,
+				62270CF51B1C6C2D001A06DD /* ScreenshotCell.m */,
 				62EE86791AF8E85A00E1EF39 /* Images.xcassets */,
 				62EE867B1AF8E85A00E1EF39 /* LaunchScreen.xib */,
 				62EE86701AF8E85A00E1EF39 /* WebServiceTut.xcdatamodeld */,
@@ -243,11 +258,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				62EE866F1AF8E85A00E1EF39 /* AppDelegate.m in Sources */,
+				62270CF31B15F4F1001A06DD /* AppCell.m in Sources */,
 				624C12FF1B14BEED0003BABC /* App.m in Sources */,
+				62270CF01B15F1B5001A06DD /* DetailViewController.m in Sources */,
 				62EE86721AF8E85A00E1EF39 /* WebServiceTut.xcdatamodeld in Sources */,
 				629193931B14C17600140E03 /* UpdateViewController.m in Sources */,
 				62EE498B1B0B945B009C9910 /* AppDeal.m in Sources */,
 				624C13021B14BEEE0003BABC /* Screenshot.m in Sources */,
+				62270CF61B1C6C2D001A06DD /* ScreenshotCell.m in Sources */,
 				62EE86751AF8E85A00E1EF39 /* ViewController.m in Sources */,
 				62EE866C1AF8E85A00E1EF39 /* main.m in Sources */,
 			);
