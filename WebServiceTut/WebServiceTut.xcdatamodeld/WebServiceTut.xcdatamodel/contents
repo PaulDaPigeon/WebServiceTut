@@ -9,8 +9,8 @@
         <attribute name="currentPrice" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="currentPriceDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="downloadURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="icon" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="iconLarge" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="iconLargeURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iD" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="previousPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="primaryCategoryID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
