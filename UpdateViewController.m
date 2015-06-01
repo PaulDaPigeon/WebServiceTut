@@ -127,7 +127,7 @@
                                                                         error:&error];
                                
                                app.icon = data;
-                               url = [appObject objectForKey:@"iconLarge"];
+                               url = [NSURL URLWithString:[appObject objectForKey:@"icon_large"]];
                                request = [NSURLRequest requestWithURL:url];
                                data = [NSURLConnection sendSynchronousRequest:request
                                                             returningResponse:&response
