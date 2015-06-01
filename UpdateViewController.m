@@ -200,7 +200,10 @@
     
     if ([segue.identifier isEqualToString:@"listSegue"])
     {
-        ViewController *viewController = segue.destinationViewController;
+        UINavigationController *navigationController = segue.destinationViewController;
+        
+        NSArray *viewControllerArray = navigationController.childViewControllers;        
+        ViewController *viewController = [viewControllerArray objectAtIndex:0];
         viewController.apps = [dealDataBase.apps allObjects];
         viewController.refreshedAt = dealDataBase.refreshedAt;
         viewController.dealCount = dealDataBase.dealCount;
