@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppCell.h"
+#import "App.h"
+#import "DetailViewController.h"
 
 
 @interface ViewController : UIViewController <UITableViewDataSource>
@@ -17,7 +20,7 @@
 @property (nonatomic, strong) NSNumber *dealCount;
 @property (nonatomic, strong) NSDate *refreshedAt;
 
--(IBAction) refresh;
+-(IBAction) refresh:(id)sender;
 
 @end
 

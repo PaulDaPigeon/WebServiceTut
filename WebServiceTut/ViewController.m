@@ -22,14 +22,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    AppCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[AppCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    cell.textLabel.text = [[self.apps objectAtIndex:indexPath.row] title];
+    cell.titleLabel.text = [(App*) [self.apps objectAtIndex:indexPath.row] title];
+    [cell.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    cell.appIcon.image = [UIImage imageWithData:[(App*) [self.apps objectAtIndex:indexPath.row] icon]];
     
     return cell;
 }
@@ -37,12 +39,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     indexOfAppToDisplay = indexPath;
-    [self performSegueWithIdentifier:@"appDetailSegue" sender:tableView];
+    [self performSegueWithIdentifier:@"detailSegue" sender:self];
     
 }
 
-- (IBAction)refresh
+- (IBAction)refresh:(id)sender
 {
+    sender = self;
     [self performSegueWithIdentifier:@"updateSegue" sender:self];
 }
 
@@ -50,21 +53,15 @@
 {
     [super prepareForSegue:segue sender:sender];
     
-    if ([segue.identifier isEqualToString:@"appDetailSegue"])
+    if ([segue.identifier isEqualToString:@"detailSegue"])
     {
-
+        DetailViewController *detailView = [segue destinationViewController];
+        detailView.app = [self.apps objectAtIndex:indexOfAppToDisplay.row];
     }
 }
 
-- (void)viewDidLoad
+- (void) updateRefreshedAtLabel
 {
-    [super viewDidLoad];
-    
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
-    self.apps =[self.apps sortedArrayUsingDescriptors:@[sort]];
-    
-    self.dealCountLabel.text = [NSString stringWithFormat:@"Deals: %li", (long)self.dealCount.integerValue];
-    
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSCalendarUnit unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay;
     NSDateComponents *breakdownInfo = [calendar components:unitFlags fromDate:self.refreshedAt  toDate:[NSDate date]  options:0];
@@ -102,7 +99,17 @@
             self.refreshedAtLabel.text = [NSString stringWithFormat:@"Last update: %li days ago", [breakdownInfo day]];
             break;
     }
-    self.refreshedAtLabel.text = [NSString stringWithFormat:@"Last update %li ago", [breakdownInfo day]];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+    self.apps =[self.apps sortedArrayUsingDescriptors:@[sort]];
+    
+    self.dealCountLabel.text = [NSString stringWithFormat:@"Deals: %li", self.dealCount.integerValue];
+    [self updateRefreshedAtLabel];
 }
 
 - (void)viewWillAppear:(BOOL)animated
