@@ -148,10 +148,6 @@
                            
                            [self saveAppDeal];
                        }
-                       else
-                       {
-                           NSLog(@"The deal database is up to date");
-                       }
                        
                        dispatch_async(dispatch_get_main_queue(), ^
                                       {
@@ -174,10 +170,6 @@
     {
         NSLog(@"Could not save with error: %@", error);
     }
-    else
-    {
-        NSLog(@"Save successful");
-    }
 }
 
 - (void) fetchDeal
@@ -193,11 +185,7 @@
     }
     else
     {
-        if (fetchedObjects.count == 0)
-        {
-            NSLog(@"No object matched the description");
-        }
-        else
+        if (fetchedObjects.count != 0)
         {
             for (NSManagedObject *object in fetchedObjects)
             {
