@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScreenshotCell.h"
+#import "Screenshot.h"
+
+@protocol ScreenshotCollectionViewControllerDelegate <NSObject>
+
+
+@required
+
+
+- (void) screenshotCollectionViewWillDismissWithImageArray:(NSMutableArray *)screenshotImageArray withSelectedImageIndex:(NSIndexPath *)indexOfScreenshotToDisplay;
+
+
+@end
 
 @interface ScreenshotCollectionViewController : UICollectionViewController
+
+@property (nonatomic, strong) NSArray *screenshotURLArray;
+@property (nonatomic, strong) NSMutableArray *screenshotImageArray;
+@property (nonatomic, strong) NSIndexPath *indexOfScreenshotToDisplay;
+@property (nonatomic, weak) id<ScreenshotCollectionViewControllerDelegate> delegate;
 
 @end

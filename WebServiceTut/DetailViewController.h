@@ -10,6 +10,7 @@
 #import "App.h"
 #import "ScreenshotCell.h"
 #import "Screenshot.h"
+#import "ScreenshotCollectionViewController.h"
 
 @interface DetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *categoryLabel;
 @property (nonatomic, strong) IBOutlet UILabel *priceAgeLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *appIcon;
+@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) App *app;
 

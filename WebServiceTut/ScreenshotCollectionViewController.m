@@ -13,86 +13,105 @@
 @end
 
 @implementation ScreenshotCollectionViewController
+{
+    NSInteger currentIndex;
+}
 
-static NSString * const reuseIdentifier = @"Cell";
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.collectionView scrollToItemAtIndexPath:self.indexOfScreenshotToDisplay atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+}
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(screenshotCollectionViewWillDismissWithImageArray:withSelectedImageIndex:)]) {
+        [self.delegate screenshotCollectionViewWillDismissWithImageArray:self.screenshotImageArray withSelectedImageIndex: self.indexOfScreenshotToDisplay];
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.collectionView.bounds.size;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.screenshotURLArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ScreenshotCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    self.indexOfScreenshotToDisplay = indexPath;
     
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
-    return 0;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 0;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    if ([self.screenshotImageArray count] != 0 && [self.screenshotImageArray count] - 1 >= indexPath.row)
+    {
+        cell.screenshot.image = [self.screenshotImageArray objectAtIndex:indexPath.row];
+        return cell;
+    }
     
-    // Configure the cell
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
+                   {
+                       Screenshot *screenshot = [self.screenshotURLArray objectAtIndex:indexPath.row];
+                       
+                       NSURL *url = [NSURL URLWithString:screenshot.screenshotURL];
+                       NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                       
+                       NSURLResponse *response;
+                       NSError *error;
+                       NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                                            returningResponse:&response
+                                                                        error:&error];
+                       if (!error)
+                       {
+                           
+                           dispatch_async(dispatch_get_main_queue(), ^
+                                          {
+                                              cell.screenshot.image = [UIImage imageWithData:data];
+                                              [self.screenshotImageArray addObject: cell.screenshot.image];
+                                              [collectionView performBatchUpdates:nil completion:nil];
+                                          });
+                       }
+                       else
+                       {
+                           NSLog(@"Could not download screenshot with error: %@", error);
+                       }
+                   });
     
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self.collectionView setAlpha:0.0f];
+    
+    CGPoint currentOffset = [self.collectionView contentOffset];
+    currentIndex = currentOffset.x / self.collectionView.frame.size.width;
+    
+    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    float offset = currentIndex * self.collectionView.bounds.size.width;
+    [self.collectionView setContentOffset:CGPointMake(offset, 0)];
+    
+    [UIView animateWithDuration:0.125f animations:^{
+        [self.collectionView setAlpha:1.0f];
+    }];
+    
+    self.indexOfScreenshotToDisplay = [NSIndexPath indexPathForRow:currentIndex inSection:0];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
-*/
 
 @end

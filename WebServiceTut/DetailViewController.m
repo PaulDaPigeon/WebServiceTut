@@ -8,61 +8,62 @@
 
 #import "DetailViewController.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () <ScreenshotCollectionViewControllerDelegate>
 
 @end
 
 @implementation DetailViewController
 {
-    NSArray *screenshotArray;
+    NSArray *screenshotURLArray;
+    NSMutableArray *screenshotImageArray;
+    NSIndexPath *indexOfScreenshotToDisplay;
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    indexOfScreenshotToDisplay = indexPath;
+    
+    [self performSegueWithIdentifier:@"ShowScreenshotGallery" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [super prepareForSegue:segue sender:sender];
+    
+    if ([segue.identifier isEqualToString:@"ShowScreenshotGallery"])
+    {
+        ScreenshotCollectionViewController *screenshotCollectionViewController = segue.destinationViewController;
+        screenshotCollectionViewController.delegate = self;
+        screenshotCollectionViewController.screenshotURLArray = screenshotURLArray;
+        screenshotCollectionViewController.screenshotImageArray = screenshotImageArray;
+        screenshotCollectionViewController.indexOfScreenshotToDisplay = indexOfScreenshotToDisplay;
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    ScreenshotCell *cell = (ScreenshotCell*) [collectionView cellForItemAtIndexPath:indexPath];
-    if (cell.screenshot.image.size.height != 0)
-    {
-        float scaleRate;
-        if (cell.screenshot.image.size.height > cell.screenshot.image.size.width)
-        {
-            scaleRate = (float) collectionView.frame.size.height / cell.screenshot.image.size.height;
-        }
-        else if (cell.screenshot.image.size.height < cell.screenshot.image.size.width)
-        {
-            scaleRate = (float) collectionView.frame.size.width / cell.screenshot.image.size.width;
-        }
-        else
-        {
-            if (collectionView.frame.size.height < collectionView.frame.size.width)
-            {
-                scaleRate = (float) collectionView.frame.size.height / cell.screenshot.image.size.height;
-            }
-            else
-            {
-                scaleRate = (float) collectionView.frame.size.width / cell.screenshot.image.size.width;
-            }
-        }
-        return CGSizeMake(cell.screenshot.image.size.width * scaleRate, cell.screenshot.image.size.height * scaleRate);
-    }
-    else{
-        return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height);
-    }
+    return collectionView.frame.size;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return screenshotArray.count;
+    return screenshotURLArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ScreenshotCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
+    if ([screenshotImageArray count] != 0 && [screenshotImageArray count] - 1 >= indexPath.row)
+    {
+        cell.screenshot.image = [screenshotImageArray objectAtIndex:indexPath.row];
+        return cell;
+    }
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
                    {
-                       Screenshot *screenshot = [screenshotArray objectAtIndex:indexPath.row];
+                       Screenshot *screenshot = [screenshotURLArray objectAtIndex:indexPath.row];
                        
                        NSURL *url = [NSURL URLWithString:screenshot.screenshotURL];
                        NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -78,6 +79,7 @@
                            dispatch_async(dispatch_get_main_queue(), ^
                                       {
                                           cell.screenshot.image = [UIImage imageWithData:data];
+                                          [screenshotImageArray addObject: cell.screenshot.image];
                                           [collectionView performBatchUpdates:nil completion:nil];
                                       });
                        }
@@ -207,7 +209,24 @@
     [self updateAllVersionRatingLabel];
     [self updatePriceAgeLabel];
     
-    screenshotArray = self.app.screenshots.allObjects;
+    screenshotURLArray = self.app.screenshots.allObjects;
+    screenshotImageArray = [NSMutableArray array];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.collectionView scrollToItemAtIndexPath:indexOfScreenshotToDisplay atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+}
+
+
+- (void) screenshotCollectionViewWillDismissWithImageArray:(NSMutableArray *)newScreenshotImageArray withSelectedImageIndex:(NSIndexPath *)newIndexOfScreenshotToDisplay
+{
+    screenshotImageArray = newScreenshotImageArray;
+    indexOfScreenshotToDisplay = newIndexOfScreenshotToDisplay;
+}
+
 }
 
 @end

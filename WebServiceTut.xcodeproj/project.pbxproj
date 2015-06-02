@@ -11,6 +11,8 @@
 		62270CF31B15F4F1001A06DD /* AppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62270CF21B15F4F1001A06DD /* AppCell.m */; };
 		62270CF61B1C6C2D001A06DD /* ScreenshotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62270CF51B1C6C2D001A06DD /* ScreenshotCell.m */; };
 		62270CF91B1C8A83001A06DD /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 62270CF81B1C8A83001A06DD /* App.m */; };
+		62270CFF1B1CBA57001A06DD /* ScreenshotCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62270CFE1B1CBA57001A06DD /* ScreenshotCollectionViewController.m */; };
+		622722781B1DDCB60050CFAD /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 622722771B1DDCB60050CFAD /* NavigationController.m */; };
 		624C13021B14BEEE0003BABC /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 624C13011B14BEEE0003BABC /* Screenshot.m */; };
 		629193931B14C17600140E03 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 629193921B14C17600140E03 /* UpdateViewController.m */; };
 		62EE498B1B0B945B009C9910 /* AppDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EE498A1B0B945B009C9910 /* AppDeal.m */; };
@@ -43,6 +45,10 @@
 		62270CF51B1C6C2D001A06DD /* ScreenshotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenshotCell.m; sourceTree = "<group>"; };
 		62270CF71B1C8A83001A06DD /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		62270CF81B1C8A83001A06DD /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
+		62270CFD1B1CBA57001A06DD /* ScreenshotCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenshotCollectionViewController.h; sourceTree = "<group>"; };
+		62270CFE1B1CBA57001A06DD /* ScreenshotCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenshotCollectionViewController.m; sourceTree = "<group>"; };
+		622722761B1DDCB60050CFAD /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		622722771B1DDCB60050CFAD /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		624C13001B14BEEE0003BABC /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
 		624C13011B14BEEE0003BABC /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshot.m; sourceTree = "<group>"; };
 		629193911B14C17600140E03 /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateViewController.h; path = ../UpdateViewController.h; sourceTree = "<group>"; };
@@ -119,6 +125,10 @@
 				629193911B14C17600140E03 /* UpdateViewController.h */,
 				629193921B14C17600140E03 /* UpdateViewController.m */,
 				62EE86761AF8E85A00E1EF39 /* Main.storyboard */,
+				62270CFD1B1CBA57001A06DD /* ScreenshotCollectionViewController.h */,
+				62270CFE1B1CBA57001A06DD /* ScreenshotCollectionViewController.m */,
+				622722761B1DDCB60050CFAD /* NavigationController.h */,
+				622722771B1DDCB60050CFAD /* NavigationController.m */,
 				62270CF11B15F4F1001A06DD /* AppCell.h */,
 				62270CF21B15F4F1001A06DD /* AppCell.m */,
 				62270CF41B1C6C2D001A06DD /* ScreenshotCell.h */,
@@ -260,11 +270,13 @@
 				62270CF91B1C8A83001A06DD /* App.m in Sources */,
 				62EE866F1AF8E85A00E1EF39 /* AppDelegate.m in Sources */,
 				62270CF31B15F4F1001A06DD /* AppCell.m in Sources */,
+				622722781B1DDCB60050CFAD /* NavigationController.m in Sources */,
 				62270CF01B15F1B5001A06DD /* DetailViewController.m in Sources */,
 				62EE86721AF8E85A00E1EF39 /* WebServiceTut.xcdatamodeld in Sources */,
 				629193931B14C17600140E03 /* UpdateViewController.m in Sources */,
 				62EE498B1B0B945B009C9910 /* AppDeal.m in Sources */,
 				624C13021B14BEEE0003BABC /* Screenshot.m in Sources */,
+				62270CFF1B1CBA57001A06DD /* ScreenshotCollectionViewController.m in Sources */,
 				62270CF61B1C6C2D001A06DD /* ScreenshotCell.m in Sources */,
 				62EE86751AF8E85A00E1EF39 /* ViewController.m in Sources */,
 				62EE866C1AF8E85A00E1EF39 /* main.m in Sources */,
