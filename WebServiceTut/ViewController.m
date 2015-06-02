@@ -66,7 +66,6 @@
 
 - (IBAction)refresh:(id)sender
 {
-    sender = self;
     [self performSegueWithIdentifier:@"updateSegue" sender:self];
 }
 
@@ -139,4 +138,15 @@
     
     [self.navigationController setNavigationBarHidden:YES];
 }
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationPortrait;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 @end

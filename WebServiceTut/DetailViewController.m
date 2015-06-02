@@ -227,6 +227,14 @@
     indexOfScreenshotToDisplay = newIndexOfScreenshotToDisplay;
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationPortrait;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end
