@@ -114,4 +114,9 @@
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
+- (BOOL) automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers
+{
+    return NO;
+}
+
 @end

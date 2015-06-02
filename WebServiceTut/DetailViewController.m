@@ -229,12 +229,12 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationPortrait;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 @end
